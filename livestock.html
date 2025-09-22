@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>PashuMitra Livestock</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#006b56",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f231f",
+                        "content-light": "#1f2937",
+                        "content-dark": "#e5e7eb",
+                        "subtle-light": "#6b7280",
+                        "subtle-dark": "#9ca3af",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a3832",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+            transform: translateX(-50%);
+        }
+        .toast.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+        @-webkit-keyframes fadein { from { bottom: 0; opacity: 0; } to { bottom: 30px; opacity: 1; } }
+        @keyframes fadein { from { bottom: 0; opacity: 0; } to { bottom: 30px; opacity: 1; } }
+        @-webkit-keyframes fadeout { from { bottom: 30px; opacity: 1; } to { bottom: 0; opacity: 0; } }
+        @keyframes fadeout { from { bottom: 30px; opacity: 1; } to { bottom: 0; opacity: 0; } }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-content-light dark:text-content-dark">
+<div class="flex min-h-screen">
+    <aside class="w-64 bg-surface-light dark:bg-surface-dark flex-col p-6 shadow-soft-lg hidden lg:flex">
+        <div class="flex items-center gap-3 mb-10">
+            <img alt="PashuMitra Logo" class="h-10 w-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJjvQ9NfKM4_D8Iqb0OKXlr9cj2warQNQjednDSeDRmCiPu28Rm4Y1EoeKh_TBkYDpbtTIabkTdhNvSIDWRbYYHDJ_fY0bCeU1qpnCGdIz8DFBjXONK4xTdLjBgVZgWdBaDiApHw91PIyRkuckEbpOzMFJz-1EDypKipIR4TJZ2bGrZivsGrKgH-t5KsbgWtYaP96XQfn8zspx02pqCqxE7ROMd0Nx9HW1PDcjJnrgfEtUBXKKetCImkif-LDO155vYf3v2zqg4qJj"/>
+            <span class="text-xl font-bold">PashuMitra</span>
+        </div>
+        <div class="flex items-center gap-3 mb-8">
+            <img alt="Priya Sharma" class="size-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqJQoKYZBMZQNjU2Z4erQatBwwniMQIFCXpWKLM9kPUCN97nV_kHh1MdWCIdHH4coUnf6UWxK6iEtAWVhXKH_xT7yv8uPPOQpVGDYTvAzOo8IE_KEtEjzZrYe-duHwC7SJcnLdsKAl-bW0jC6qenWaFhG6OV28HgxN_iGw-SO9OJoA2G2daJSb-srVzRU7BBUSSQC_rEzJQSdHLPdCO9aW8Gqtg67ucSUZZocFuxEcft8QbnAxXGxAwpCJrzDxLwERqrVuxGtG2Cbu"/>
+            <div>
+                <h3 class="font-semibold text-content-light dark:text-content-dark">Priya Sharma</h3>
+                <p class="text-sm text-subtle-light dark:text-subtle-dark">Farmer ID: 12345</p>
+            </div>
+        </div>
+        <nav class="flex flex-col gap-2">
+            <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-content-light dark:text-content-dark hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors" href="index2.html">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-2 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary font-medium" href="livestock.html">
+                <span class="material-symbols-outlined">pets</span>
+                <span>Livestock</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-content-light dark:text-content-dark hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors" href="health.html">
+                <span class="material-symbols-outlined">health_and_safety</span>
+                <span>Health</span>
+            </a>
+        </nav>
+    </aside>
+    <main class="flex-1 p-6 lg:p-10">
+        <header class="mb-8 flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold">Livestock Management</h1>
+                <p class="text-subtle-light dark:text-subtle-dark mt-1">Manage all your animals and their records.</p>
+            </div>
+            <div class="flex items-center gap-2">
+                <button id="add-animal-btn" class="inline-flex items-center gap-2 bg-primary text-white font-medium py-2 px-4 rounded-lg hover:bg-primary/90 transition-colors">
+                    <span class="material-symbols-outlined">add</span>
+                    <span>Add Animal</span>
+                </button>
+                <a href="index1.html" class="flex items-center gap-2 rounded-full p-2 hover:bg-primary/10 transition-colors">
+                    <span class="material-symbols-outlined text-primary dark:text-gray-200">logout</span>
+                </a>
+                <img alt="User Avatar" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqJQoKYZBMZQNjU2Z4erQatBwwniMQIFCXpWKLM9kPUCN97nV_kHh1MdWCIdHH4coUnf6UWxK6iEtAWVhXKH_xT7yv8uPPOQpVGDYTvAzOo8IE_KEtEjzZrYe-duHwC7SJcnLdsKAl-bW0jC6qenWaFhG6OV28HgxN_iGw-SO9OJoA2G2daJSb-srVzRU7BBUSSQC_rEzJQSdHLPdCO9aW8Gqtg67ucSUZZocFuxEcft8QbnAxXGxAwpCJrzDxLwERqrVuxGtG2Cbu"/>
+            </div>
+        </header>
+
+        <div class="flex flex-col sm:flex-row items-center gap-4 mb-6">
+            <div class="relative w-full sm:w-1/2">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-subtle-light dark:text-subtle-dark">search</span>
+                <input type="text" id="search-input" placeholder="Search for animals..." class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 dark:border-surface-dark bg-white dark:bg-surface-dark text-content-light dark:text-content-dark focus:outline-none focus:ring-1 focus:ring-primary">
+            </div>
+            <select id="health-filter" class="w-full sm:w-1/4 py-2 px-4 rounded-full border border-gray-300 dark:border-surface-dark bg-white dark:bg-surface-dark text-content-light dark:text-content-dark focus:outline-none focus:ring-1 focus:ring-primary">
+                <option value="all">All Health</option>
+                <option value="Healthy">Healthy</option>
+                <option value="Needs Checkup">Needs Checkup</option>
+                <option value="Unwell">Unwell</option>
+            </select>
+        </div>
+
+        <div id="livestock-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+    </main>
+</div>
+
+<div id="animal-modal" class="fixed inset-0 z-50 hidden items-center justify-center modal-overlay">
+    <div class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl shadow-soft w-full max-w-lg mx-4">
+        <h3 id="modal-title" class="text-xl font-semibold mb-4">Add New Animal</h3>
+        <form id="animal-form">
+            <div class="flex flex-col items-center mb-4">
+                <img id="animal-photo-preview" class="w-32 h-32 rounded-full object-cover mb-2 border-2 border-primary" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFq0RQTm1E9FRd2TCkXTmHaY5rIjah6imANnFOR-WbQNZA8ludztyuMbXMeeN1AMakCKSMgi3lL6FHiumHxDqehJOowZV7OmScHG1FpESBemUH1YfiD_A_Cm0OpuQCFbM23Nh9YaQwFNkeL988wfzkGIvJ6hO5GsHXsqF-eRBSOatg49Zrw-De1Zfew_EUqfEWfdauVnZ92ogFCB8HZ2dXtr9XsUt4WMficokx-c1ezqSYWXyL6TkiMg_4aGBx4MRk12ibv5RvrYAB8" alt="Animal Photo"/>
+                <label class="cursor-pointer text-sm font-medium text-primary hover:underline">
+                    <span>Upload new photo</span>
+                    <input type="file" id="animal-photo" class="hidden" accept="image/*">
+                </label>
+            </div>
+            <div class="mb-4">
+                <label for="animal-name" class="block text-sm font-medium">Animal Name</label>
+                <input type="text" id="animal-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary dark:bg-background-dark" required>
+            </div>
+            <div class="mb-4">
+                <label for="animal-type" class="block text-sm font-medium">Type</label>
+                <input type="text" id="animal-type" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary dark:bg-background-dark" required>
+            </div>
+            <div class="mb-4">
+                <label for="animal-health" class="block text-sm font-medium">Health Status</label>
+                <select id="animal-health" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary dark:bg-background-dark" required>
+                    <option value="Healthy">Healthy</option>
+                    <option value="Needs Checkup">Needs Checkup</option>
+                    <option value="Unwell">Unwell</option>
+                </select>
+            </div>
+            <div class="flex justify-end gap-2">
+                <button type="button" id="delete-animal-btn" class="py-2 px-4 rounded-lg text-red-600 hover:bg-red-100 dark:hover:bg-red-900 transition-colors hidden">Delete</button>
+                <button type="button" id="cancel-btn" class="py-2 px-4 rounded-lg text-content-light dark:text-content-dark hover:bg-gray-200 dark:hover:bg-surface-dark transition-colors">Cancel</button>
+                <button type="submit" class="py-2 px-4 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+    const saveLivestockData = (data) => {
+        localStorage.setItem('livestockData', JSON.stringify(data));
+    };
+
+    const getLivestockData = () => {
+        const storedData = localStorage.getItem('livestockData');
+        return storedData ? JSON.parse(storedData) : [
+            { id: 1, name: 'Bholi', type: 'Cow', health: 'Healthy', imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCFq0RQTm1E9FRd2TCkXTmHaY5rIjah6imANnFOR-WbQNZA8ludztyuMbXMeeN1AMakCKSMgi3lL6FHiumHxDqehJOowZV7OmScHG1FpESBemUH1YfiD_A_Cm0OpuQCFbM23Nh9YaQwFNkeL988wfzkGIvJ6hO5GsHXsqF-eRBSOatg49Zrw-De1Zfew_EUqfEWfdauVnZ92ogFCB8HZ2dXtr9XsUt4WMficokx-c1ezqSYWXyL6TkiMg_4aGBx4MRk12ibv5RvrYAB4' },
+            { id: 2, name: 'Shera', type: 'Buffalo', health: 'Needs Checkup', imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCFq0RQTm1E9FRd2TCkXTmHaY5rIjah6imANnFOR-WbQNZA8ludztyuMbXMeeN1AMakCKSMgi3lL6FHiumHxDqehJOowZV7OmScHG1FpESBemUH1YfiD_A_Cm0OpuQCFbM23Nh9YaQwFNkeL988wfzkGIvJ6hO5GsHXsqF-eRBSOatg49Zrw-De1Zfew_EUqfEWfdauVnZ92ogFCB8HZ2dXtr9XsUt4WMficokx-c1ezqSYWXyL6TkiMg_4aGBx4MRk12ibv5RvrYAB5' },
+            { id: 3, name: 'Dugga', type: 'Goat', health: 'Healthy', imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCFq0RQTm1E9FRd2TCkXTmHaY5rIjah6imANnFOR-WbQNZA8ludztyuMbXMeeN1AMakCKSMgi3lL6FHiumHxDqehJOowZV7OmScHG1FpESBemUH1YfiD_A_Cm0OpuQCFbM23Nh9YaQwFNkeL988wfzkGIvJ6hO5GsHXsqF-eRBSOatg49Zrw-De1Zfew_EUqfEWfdauVnZ92ogFCB8HZ2dXtr9XsUt4WMficokx-c1ezqSYWXyL6TkiMg_4aGBx4MRk12ibv5RvrYAB6' }
+        ];
+    };
+    
+    let livestockData = getLivestockData();
+
+    const healthStatusColors = {
+        'Healthy': 'bg-green-500/20 text-green-600 dark:text-green-400',
+        'Needs Checkup': 'bg-yellow-500/20 text-yellow-600 dark:text-yellow-400',
+        'Unwell': 'bg-red-500/20 text-red-600 dark:text-red-400'
+    };
+
+    let editingAnimalId = null;
+
+    function renderLivestock(filter = 'all', searchTerm = '') {
+        const grid = document.getElementById('livestock-grid');
+        grid.innerHTML = '';
+        
+        const filteredData = livestockData.filter(animal => {
+            const matchesFilter = filter === 'all' || animal.health === filter;
+            const matchesSearch = animal.name.toLowerCase().includes(searchTerm.toLowerCase());
+            return matchesFilter && matchesSearch;
+        });
+
+        if (filteredData.length === 0) {
+            grid.innerHTML = `<p class="col-span-full text-center text-subtle-light dark:text-subtle-dark">No animals found matching your search.</p>`;
+        }
+
+        filteredData.forEach(animal => {
+            const card = document.createElement('div');
+            card.className = `bg-surface-light dark:bg-surface-dark p-6 rounded-xl shadow-soft flex flex-col items-center text-center cursor-pointer hover:shadow-lg transition-shadow`;
+            card.setAttribute('data-id', animal.id);
+            card.innerHTML = `
+                <img src="${animal.imageUrl}" alt="${animal.name}" class="w-32 h-32 rounded-full object-cover mb-4">
+                <h3 class="text-lg font-semibold text-content-light dark:text-content-dark">${animal.name}</h3>
+                <p class="text-sm text-subtle-light dark:text-subtle-dark">${animal.type}</p>
+                <div class="mt-2 text-sm font-medium px-2 py-1 rounded-full ${healthStatusColors[animal.health]}">
+                    ${animal.health}
+                </div>
+            `;
+            card.addEventListener('click', () => openEditModal(animal));
+            grid.appendChild(card);
+        });
+    }
+
+    function openAddModal() {
+        document.getElementById('modal-title').textContent = 'Add New Animal';
+        document.getElementById('delete-animal-btn').classList.add('hidden');
+        document.getElementById('animal-photo-preview').src = 'https://lh3.googleusercontent.com/aida-public/AB6AXuCFq0RQTm1E9FRd2TCkXTmHaY5rIjah6imANnFOR-WbQNZA8ludztyuMbXMeeN1AMakCKSMgi3lL6FHiumHxDqehJOowZV7OmScHG1FpESBemUH1YfiD_A_Cm0OpuQCFbM23Nh9YaQwFNkeL988wfzkGIvJ6hO5GsHXsqF-eRBSOatg49Zrw-De1Zfew_EUqfEWfdauVnZ92ogFCB8HZ2dXtr9XsUt4WMficokx-c1ezqSYWXyL6TkiMg_4aGBx4MRk12ibv5RvrYAB8';
+        document.getElementById('animal-form').reset();
+        document.getElementById('animal-modal').classList.remove('hidden');
+        document.getElementById('animal-modal').classList.add('flex');
+        editingAnimalId = null;
+    }
+
+    function openEditModal(animal) {
+        document.getElementById('modal-title').textContent = 'Edit Animal';
+        document.getElementById('delete-animal-btn').classList.remove('hidden');
+        document.getElementById('animal-photo-preview').src = animal.imageUrl;
+        document.getElementById('animal-name').value = animal.name;
+        document.getElementById('animal-type').value = animal.type;
+        document.getElementById('animal-health').value = animal.health;
+        document.getElementById('animal-modal').classList.remove('hidden');
+        document.getElementById('animal-modal').classList.add('flex');
+        editingAnimalId = animal.id;
+    }
+
+    function closeModal() {
+        document.getElementById('animal-modal').classList.remove('flex');
+        document.getElementById('animal-modal').classList.add('hidden');
+        document.getElementById('animal-form').reset();
+    }
+
+    const addAnimalBtn = document.getElementById('add-animal-btn');
+    const animalModal = document.getElementById('animal-modal');
+    const cancelBtn = document.getElementById('cancel-btn');
+    const animalForm = document.getElementById('animal-form');
+    const animalPhotoInput = document.getElementById('animal-photo');
+    const animalPhotoPreview = document.getElementById('animal-photo-preview');
+    const deleteAnimalBtn = document.getElementById('delete-animal-btn');
+    const toast = document.getElementById('toast');
+    const searchInput = document.getElementById('search-input');
+    const healthFilter = document.getElementById('health-filter');
+
+    addAnimalBtn.addEventListener('click', openAddModal);
+    cancelBtn.addEventListener('click', closeModal);
+
+    animalPhotoInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                animalPhotoPreview.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    animalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('animal-name').value;
+        const type = document.getElementById('animal-type').value;
+        const health = document.getElementById('animal-health').value;
+        const photoFile = animalPhotoInput.files[0];
+        let imageUrl = animalPhotoPreview.src;
+
+        if (editingAnimalId) {
+            const animalToUpdate = livestockData.find(animal => animal.id === editingAnimalId);
+            animalToUpdate.name = name;
+            animalToUpdate.type = type;
+            animalToUpdate.health = health;
+            if (photoFile) {
+                animalToUpdate.imageUrl = URL.createObjectURL(photoFile);
+            }
+            showToast("Animal updated successfully!");
+        } else {
+            const newId = livestockData.length > 0 ? Math.max(...livestockData.map(a => a.id)) + 1 : 1;
+            if (photoFile) {
+                imageUrl = URL.createObjectURL(photoFile);
+            }
+            livestockData.push({ id: newId, name, type, health, imageUrl });
+            showToast("New animal added successfully!");
+        }
+
+        saveLivestockData(livestockData);
+        closeModal();
+        renderLivestock(healthFilter.value, searchInput.value);
+    });
+
+    deleteAnimalBtn.addEventListener('click', () => {
+        if (confirm("Are you sure you want to delete this animal?")) {
+            const index = livestockData.findIndex(animal => animal.id === editingAnimalId);
+            if (index > -1) {
+                livestockData.splice(index, 1);
+                saveLivestockData(livestockData);
+                showToast("Animal deleted successfully!");
+            }
+            closeModal();
+            renderLivestock(healthFilter.value, searchInput.value);
+        }
+    });
+
+    searchInput.addEventListener('input', () => {
+        renderLivestock(healthFilter.value, searchInput.value);
+    });
+
+    healthFilter.addEventListener('change', () => {
+        renderLivestock(healthFilter.value, searchInput.value);
+    });
+
+    function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("show");
+        setTimeout(() => { toast.classList.remove("show"); }, 3000);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        renderLivestock();
+    });
+</script>
+</body>
+</html>

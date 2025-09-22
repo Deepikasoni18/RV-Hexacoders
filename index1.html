@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PashuMitra Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#006b56",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f231f",
+                        "content-light": "#1f2937",
+                        "content-dark": "#e5e7eb",
+                        "subtle-light": "#6b7280",
+                        "subtle-dark": "#9ca3af",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a3832",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+font-family: 'Inter', sans-serif;
+}
+.form-select {
+ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+ background-position: right 0.5rem center;
+background-repeat: no-repeat;
+background-size: 1.5em 1.5em;
+padding-right: 2.5rem;
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+}
+</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative min-h-screen flex items-center justify-center p-4">
+<div class="absolute inset-0 z-0">
+<img alt="Farm background illustration" class="w-full h-full object-cover opacity-10 dark:opacity-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhiVtquzEl1JEcxo9o776Fe8GUVraPmgtszu4WayWpuDDxoQMYVlMNhxJmj9SSplwI6z0hA2_MeC2B8l6uMG8yIR2iz11fDZjbmERj227cbjLpiu1ms-UQeWXhfLktdQz7v1PLwwV3ABQt-_-Cys1hIwEPEOtDXiCxFXDaHmlCfEF7ndsgZHX-IT4gBRegU1U0IMNX9tUFNJP1cCIXjgevUpV_qm4H1_jOCSB6mWQUr8TvQ9fSwpfknOv-ik1qm37v8KIACfVZgJ74"/>
+</div>
+<main class="w-full max-w-md bg-surface-light dark:bg-surface-dark rounded-xl shadow-lg p-8 z-10 border border-primary/20 dark:border-primary/40">
+<div class="flex flex-col items-center mb-8">
+<img alt="PashuMitra Logo" class="h-16 w-auto mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFq0RQTm1E9FRd2TCkXTmHaY5rIjah6imANnFOR-WbQNZA8ludztyuMbXMeeN1AMakCKSMgi3lL6FHiumHxDqehJOowZV7OmScHG1FpESBemUH1YfiD_A_Cm0OpuQCFbM23Nh9YaQwFNkeL988wfzkGIvJ6hO5GsHXsqF-eRBSOatg49Zrw-De1Zfew_EUqfEWfdauVnZ92ogFCB8HZ2dXtr9XsUt4WMficokx-c1ezqSYWXyL6TkiMg_4aGBx4MRk12ibv5RvrYAB"/>
+<h1 class="text-2xl font-bold text-primary dark:text-white">Welcome Back</h1>
+<p class="text-primary/70 dark:text-white/60 mt-1">Login to continue to PashuMitra</p>
+</div>
+<form class="space-y-6">
+<div>
+<label class="sr-only" for="language">Language</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary/60 dark:text-white/50">
+language
+</span>
+<select class="w-full pl-10 pr-4 py-3 form-select bg-surface-light/50 dark:bg-surface-dark/50 border-2 border-primary/20 focus:border-primary dark:border-white/20 dark:focus:border-primary text-primary/90 dark:text-white/80 rounded-lg focus:ring-0 focus:outline-none transition-colors duration-300" id="language" name="language">
+<option>English</option>
+<option>हिन्दी</option>
+<option>ਪੰਜਾਬੀ</option>
+</select>
+</div>
+</div>
+<div>
+<label class="sr-only" for="phone">Phone Number</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary/60 dark:text-white/50">
+phone_iphone
+</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-light/50 dark:bg-surface-dark/50 border-2 border-primary/20 focus:border-primary dark:border-white/20 dark:focus:border-primary text-primary/90 dark:text-white/80 placeholder-primary/50 dark:placeholder-white/50 rounded-lg focus:ring-0 focus:outline-none transition-colors duration-300" id="phone" name="phone" placeholder="Enter your phone number" type="tel"/>
+</div>
+</div>
+<div>
+<a href="index2.html" class="w-full flex items-center justify-center gap-2 bg-primary text-white font-bold py-3 px-4 rounded-lg shadow-md hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50 dark:focus:ring-offset-background-dark transition-all duration-300 ease-in-out transform hover:-translate-y-0.5">
+<span class="material-symbols-outlined">
+login
+</span>
+<span>Login</span>
+</a>
+</div>
+</form>
+<div class="text-center mt-6">
+<p class="text-sm text-primary/60 dark:text-white/50">
+Don't have an account? <a class="font-medium text-primary hover:underline" href="#">Sign up</a>
+</p>
+</div>
+</main>
+</div>
+</body>
+</html>

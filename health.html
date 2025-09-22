@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PashuMitra Health Records</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#006b56",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f231f",
+                        "content-light": "#1f2937",
+                        "content-dark": "#e5e7eb",
+                        "subtle-light": "#6b7280",
+                        "subtle-dark": "#9ca3af",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a3832",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+            transform: translateX(-50%);
+        }
+        .toast.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+        @-webkit-keyframes fadein { from { bottom: 0; opacity: 0; } to { bottom: 30px; opacity: 1; } }
+        @keyframes fadein { from { bottom: 0; opacity: 0; } to { bottom: 30px; opacity: 1; } }
+        @-webkit-keyframes fadeout { from { bottom: 30px; opacity: 1; } to { bottom: 0; opacity: 0; } }
+        @keyframes fadeout { from { bottom: 30px; opacity: 1; } to { bottom: 0; opacity: 0; } }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-content-light dark:text-content-dark">
+<div class="flex min-h-screen">
+    <aside class="w-64 bg-surface-light dark:bg-surface-dark flex-col p-6 shadow-soft-lg hidden lg:flex">
+        <div class="flex items-center gap-3 mb-10">
+            <img alt="PashuMitra Logo" class="h-10 w-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJjvQ9NfKM4_D8Iqb0OKXlr9cj2warQNQjednDSeDRmCiPu28Rm4Y1EoeKh_TBkYDpbtTIabkTdhNvSIDWRbYYHDJ_fY0bCeU1qpnCGdIz8DFBjXONK4xTdLjBgVZgWdBaDiApHw91PIyRkuckEbpOzMFJz-1EDypKipIR4TJZ2bGrZivsGrKgH-t5KsbgWtYaP96XQfn8zspx02pqCqxE7ROMd0Nx9HW1PDcjJnrgfEtUBXKKetCImkif-LDO155vYf3v2zqg4qJj"/>
+            <span class="text-xl font-bold">PashuMitra</span>
+        </div>
+        <div class="flex items-center gap-3 mb-8">
+            <img alt="Priya Sharma" class="size-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqJQoKYZBMZQNjU2Z4erQatBwwniMQIFCXpWKLM9kPUCN97nV_kHh1MdWCIdHH4coUnf6UWxK6iEtAWVhXKH_xT7yv8uPPOQpVGDYTvAzOo8IE_KEtEjzZrYe-duHwC7SJcnLdsKAl-bW0jC6qenWaFhG6OV28HgxN_iGw-SO9OJoA2G2daJSb-srVzRU7BBUSSQC_rEzJQSdHLPdCO9aW8Gqtg67ucSUZZocFuxEcft8QbnAxXGxAwpCJrzDxLwERqrVuxGtG2Cbu"/>
+            <div>
+                <h3 class="font-semibold text-content-light dark:text-content-dark">Priya Sharma</h3>
+                <p class="text-sm text-subtle-light dark:text-subtle-dark">Farmer ID: 12345</p>
+            </div>
+        </div>
+        <nav class="flex flex-col gap-2">
+            <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-content-light dark:text-content-dark hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors" href="index2.html">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-content-light dark:text-content-dark hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors" href="livestock.html">
+                <span class="material-symbols-outlined">pets</span>
+                <span>Livestock</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-2 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary font-medium" href="health.html">
+                <span class="material-symbols-outlined">health_and_safety</span>
+                <span>Health</span>
+            </a>
+        </nav>
+    </aside>
+    <main class="flex-1 p-6 lg:p-10">
+        <header class="mb-8 flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold">Health Records</h1>
+                <p class="text-subtle-light dark:text-subtle-dark mt-1">View and manage health records for your animals.</p>
+            </div>
+            <div class="flex items-center gap-2">
+                <button id="add-record-btn" class="inline-flex items-center gap-2 bg-primary text-white font-medium py-2 px-4 rounded-lg hover:bg-primary/90 transition-colors">
+                    <span class="material-symbols-outlined">add</span>
+                    <span>Add Record</span>
+                </button>
+                <a href="index1.html" class="flex items-center gap-2 rounded-full p-2 hover:bg-primary/10 transition-colors">
+                    <span class="material-symbols-outlined text-primary dark:text-gray-200">logout</span>
+                </a>
+                <img alt="User Avatar" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqJQoKYZBMZQNjU2Z4erQatBwwniMQIFCXpWKLM9kPUCN97nV_kHh1MdWCIdHH4coUnf6UWxK6iEtAWVhXKH_xT7yv8uPPOQpVGDYTvAzOo8IE_KEtEjzZrYe-duHwC7SJcnLdsKAl-bW0jC6qenWaFhG6OV28HgxN_iGw-SO9OJoA2G2daJSb-srVzRU7BBUSSQC_rEzJQSdHLPdCO9aW8Gqtg67ucSUZZocFuxEcft8QbnAxXGxAwpCJrzDxLwERqrVuxGtG2Cbu"/>
+            </div>
+        </header>
+
+        <div id="health-records-container" class="space-y-4">
+            </div>
+    </main>
+</div>
+
+<div id="record-modal" class="fixed inset-0 z-50 hidden items-center justify-center modal-overlay">
+    <div class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl shadow-soft w-full max-w-lg mx-4">
+        <h3 id="modal-title" class="text-xl font-semibold mb-4">Add New Health Record</h3>
+        <form id="record-form">
+            <div class="mb-4">
+                <label for="animal-select" class="block text-sm font-medium">Select Animal</label>
+                <select id="animal-select" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary dark:bg-background-dark" required>
+                    </select>
+            </div>
+            <div class="mb-4">
+                <label for="record-type" class="block text-sm font-medium">Record Type</label>
+                <select id="record-type" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary dark:bg-background-dark" required>
+                    <option value="Vaccination">Vaccination</option>
+                    <option value="Checkup">Checkup</option>
+                    <option value="Treatment">Treatment</option>
+                    <option value="Diet Change">Diet Change</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="record-details" class="block text-sm font-medium">Details</label>
+                <textarea id="record-details" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary dark:bg-background-dark" required></textarea>
+            </div>
+            <div class="mb-4 hidden" id="recorded-by-div">
+                 <p class="text-sm font-medium">Recorded by: <span id="recorded-by" class="font-normal"></span></p>
+                 <p class="text-sm font-medium">Date: <span id="record-date" class="font-normal"></span></p>
+            </div>
+            <div class="flex justify-end gap-2">
+                <button type="button" id="delete-record-btn" class="py-2 px-4 rounded-lg text-red-600 hover:bg-red-100 dark:hover:bg-red-900 transition-colors hidden">Delete</button>
+                <button type="button" id="cancel-btn" class="py-2 px-4 rounded-lg text-content-light dark:text-content-dark hover:bg-gray-200 dark:hover:bg-surface-dark transition-colors">Cancel</button>
+                <button type="submit" class="py-2 px-4 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+    const saveLivestockData = (data) => {
+        localStorage.setItem('livestockData', JSON.stringify(data));
+    };
+
+    const getLivestockData = () => {
+        const storedData = localStorage.getItem('livestockData');
+        return storedData ? JSON.parse(storedData) : [
+            { id: 1, name: 'Bholi', type: 'Cow', health: 'Healthy' },
+            { id: 2, name: 'Shera', type: 'Buffalo', health: 'Needs Checkup' },
+            { id: 3, name: 'Dugga', type: 'Goat', health: 'Healthy' }
+        ];
+    };
+
+    const saveHealthRecordsData = (data) => {
+        localStorage.setItem('healthRecordsData', JSON.stringify(data));
+    };
+
+    const getHealthRecordsData = () => {
+        const storedData = localStorage.getItem('healthRecordsData');
+        return storedData ? JSON.parse(storedData) : [
+            { id: 1, animalId: 1, animalName: 'Bholi', type: 'Vaccination', details: 'FMD vaccination completed.', date: '2025-08-15', recordedBy: 'Priya' },
+            { id: 2, animalId: 2, animalName: 'Shera', type: 'Checkup', details: 'Routine checkup. Found minor issue, prescribed antibiotics.', date: '2025-09-20', recordedBy: 'Priya' },
+        ];
+    };
+    
+    let livestockData = getLivestockData();
+    let healthRecordsData = getHealthRecordsData();
+    let editingRecordId = null;
+
+    function renderHealthRecords() {
+        const container = document.getElementById('health-records-container');
+        container.innerHTML = '';
+
+        if (healthRecordsData.length === 0) {
+            container.innerHTML = `<p class="text-center text-subtle-light dark:text-subtle-dark">No health records found.</p>`;
+        }
+
+        healthRecordsData.forEach(record => {
+            const card = document.createElement('div');
+            card.className = `bg-surface-light dark:bg-surface-dark p-4 rounded-lg shadow-soft cursor-pointer hover:shadow-md transition-shadow`;
+            card.innerHTML = `
+                <div class="flex justify-between items-center mb-1">
+                    <span class="font-semibold">${record.animalName}</span>
+                    <div class="flex gap-2 items-center text-sm">
+                       <span class="text-subtle-light dark:text-subtle-dark">${record.date}</span>
+                       <span class="material-symbols-outlined text-base">edit_note</span>
+                    </div>
+                </div>
+                <div class="text-xs font-medium px-2 py-1 rounded-full w-fit bg-primary/10 text-primary dark:bg-primary/20">${record.type}</div>
+                <p class="mt-2 text-sm">${record.details}</p>
+            `;
+            card.addEventListener('click', () => openEditModal(record));
+            container.appendChild(card);
+        });
+    }
+
+    function populateAnimalSelect() {
+        const select = document.getElementById('animal-select');
+        select.innerHTML = '';
+        livestockData.forEach(animal => {
+            const option = document.createElement('option');
+            option.value = animal.id;
+            option.textContent = animal.name;
+            select.appendChild(option);
+        });
+    }
+
+    function openAddModal() {
+        document.getElementById('modal-title').textContent = 'Add New Health Record';
+        document.getElementById('delete-record-btn').classList.add('hidden');
+        document.getElementById('recorded-by-div').classList.add('hidden');
+        document.getElementById('record-form').reset();
+        document.getElementById('record-modal').classList.remove('hidden');
+        document.getElementById('record-modal').classList.add('flex');
+        editingRecordId = null;
+    }
+
+    function openEditModal(record) {
+        document.getElementById('modal-title').textContent = 'Edit Health Record';
+        document.getElementById('delete-record-btn').classList.remove('hidden');
+        document.getElementById('recorded-by-div').classList.remove('hidden');
+
+        document.getElementById('animal-select').value = record.animalId;
+        document.getElementById('record-type').value = record.type;
+        document.getElementById('record-details').value = record.details;
+        document.getElementById('recorded-by').textContent = record.recordedBy;
+        document.getElementById('record-date').textContent = record.date;
+        
+        document.getElementById('record-modal').classList.remove('hidden');
+        document.getElementById('record-modal').classList.add('flex');
+        editingRecordId = record.id;
+    }
+
+    function closeModal() {
+        document.getElementById('record-modal').classList.remove('flex');
+        document.getElementById('record-modal').classList.add('hidden');
+        document.getElementById('record-form').reset();
+    }
+
+    const addRecordBtn = document.getElementById('add-record-btn');
+    const recordModal = document.getElementById('record-modal');
+    const cancelBtn = document.getElementById('cancel-btn');
+    const recordForm = document.getElementById('record-form');
+    const deleteRecordBtn = document.getElementById('delete-record-btn');
+    const toast = document.getElementById('toast');
+
+    addRecordBtn.addEventListener('click', openAddModal);
+    cancelBtn.addEventListener('click', closeModal);
+
+    recordForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const animalId = document.getElementById('animal-select').value;
+        const animalName = livestockData.find(a => a.id == animalId).name;
+        const recordType = document.getElementById('record-type').value;
+        const recordDetails = document.getElementById('record-details').value;
+        const today = new Date().toISOString().slice(0, 10);
+        
+        if (editingRecordId) {
+            const recordToUpdate = healthRecordsData.find(record => record.id === editingRecordId);
+            recordToUpdate.animalId = animalId;
+            recordToUpdate.animalName = animalName;
+            recordToUpdate.type = recordType;
+            recordToUpdate.details = recordDetails;
+            showToast("Health record updated successfully!");
+        } else {
+            const newId = healthRecordsData.length > 0 ? Math.max(...healthRecordsData.map(r => r.id)) + 1 : 1;
+            healthRecordsData.push({ 
+                id: newId, 
+                animalId: parseInt(animalId), 
+                animalName: animalName, 
+                type: recordType, 
+                details: recordDetails, 
+                date: today,
+                recordedBy: 'Priya' 
+            });
+            showToast("Health record added successfully!");
+        }
+
+        saveHealthRecordsData(healthRecordsData);
+        closeModal();
+        renderHealthRecords();
+    });
+
+    deleteRecordBtn.addEventListener('click', () => {
+        if (confirm("Are you sure you want to delete this record?")) {
+            const index = healthRecordsData.findIndex(record => record.id === editingRecordId);
+            if (index > -1) {
+                healthRecordsData.splice(index, 1);
+                saveHealthRecordsData(healthRecordsData);
+                showToast("Record deleted successfully!");
+            }
+            closeModal();
+            renderHealthRecords();
+        }
+    });
+
+    function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("show");
+        setTimeout(() => { toast.classList.remove("show"); }, 3000);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        populateAnimalSelect();
+        renderHealthRecords();
+    });
+</script>
+</body>
+</html>

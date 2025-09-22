@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>PashuMitra Checklist</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#006b56",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f231f",
+                        "content-light": "#1f2937",
+                        "content-dark": "#e5e7eb",
+                        "subtle-light": "#6b7280",
+                        "subtle-dark": "#9ca3af",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a3832",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+.neumorphic-button{background:linear-gradient(145deg,#ffffff,#d4d9d9);box-shadow:5px 5px 10px #c2c7c7,-5px -5px 10px #ffffff;}.dark .neumorphic-button{background:linear-gradient(145deg,#102622,#0e201d);box-shadow:5px 5px 10px #0c1b18,-5px -5px 10px #122b26;}
+</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-content-light dark:text-content-dark">
+<header class="bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-20 border-b border-primary/20">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+<div class="flex items-center gap-3 text-primary">
+<svg class="h-8 w-8" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z" fill="currentColor"></path>
+</svg>
+<h1 class="text-xl font-bold">PashuMitra</h1>
+</div>
+<nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+<a href="index2.html" class="text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors">Home</a>
+<a href="index3.html" class="text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors">Risk Assessment</a>
+<a href="index4.html" class="text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors">Training</a>
+<a href="index6.html" class="text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors">Alerts</a>
+<a href="index5.html" class="text-primary font-semibold">Checklist</a>
+</nav>
+<div class="flex items-center gap-2">
+<button id="dark-toggle" class="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<a href="index1.html" class="flex items-center gap-2 rounded-full p-2 hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-primary dark:text-gray-200">logout</span>
+</a>
+<img alt="User Avatar" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqJQoKYZBMZQNjU2Z4erQatBwwniMQIFCXpWKLM9kPUCN97nV_kHh1MdWCIdHH4coUnf6UWxK6iEtAWVhXKH_xT7yv8uPPOQpVGDYTvAzOo8IE_KEtEjzZrYe-duHwC7SJcnLdsKAl-bW0jC6qenWaFhG6OV28HgxN_iGw-SO9OJoA2G2daJSb-srVzRU7BBUSSQC_rEzJQSdHLPdCO9aW8Gqtg67ucSUZZocFuxEcft8QbnAxXGxAwpCJrzDxLwERqrVuxGtG2Cbu"/>
+</div>
+</header>
+<main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+<h2 class="text-3xl font-bold mb-8 text-content-light dark:text-content-dark">Biosecurity Checklist</h2>
+<div class="space-y-4 max-w-4xl mx-auto">
+<label class="flex items-start p-4 rounded-lg bg-primary/5 dark:bg-primary/10 border border-transparent hover:border-primary/30 transition-all cursor-pointer">
+<input checked class="h-5 w-5 rounded border-primary/40 text-primary focus:ring-primary/50" type="checkbox"/>
+<span class="ml-4 text-base text-content-light dark:text-content-dark">Implement cleaning protocols.</span>
+</label>
+<label class="flex items-start p-4 rounded-lg bg-primary/5 dark:bg-primary/10 border border-transparent hover:border-primary/30 transition-all cursor-pointer">
+<input checked class="h-5 w-5 rounded border-primary/40 text-primary focus:ring-primary/50" type="checkbox"/>
+<span class="ml-4 text-base text-content-light dark:text-content-dark">Quarantine new animals before introduction.</span>
+</label>
+<label class="flex items-start p-4 rounded-lg bg-surface-light dark:bg-surface-dark border border-primary/20 hover:border-primary/30 transition-all cursor-pointer">
+<input class="h-5 w-5 rounded border-primary/40 text-primary focus:ring-primary/50" type="checkbox"/>
+<span class="ml-4 text-base text-content-light dark:text-content-dark">Vaccination schedule maintenance.</span>
+</label>
+</div>
+<div class="mt-8 flex justify-center">
+<a href="index2.html" class="neumorphic-button text-primary font-semibold py-2 px-6 rounded-lg transition-transform transform hover:scale-105">
+View Completed Tasks
+</a>
+</div>
+</main>
+<footer class="bg-background-light dark:bg-background-dark border-t border-primary/10 mt-12 py-6 text-center">
+<p class="text-sm text-subtle-light dark:text-subtle-dark">© 2025 PashuMitra. All rights reserved.</p>
+</footer>
+<script>
+    document.getElementById('dark-toggle').addEventListener('click', () => document.body.classList.toggle('dark'));
+</script>
+</body>
+</html>

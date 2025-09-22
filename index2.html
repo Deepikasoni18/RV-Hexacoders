@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>PashuMitra Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#006b56",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f231f",
+                        "content-light": "#1f2937",
+                        "content-dark": "#e5e7eb",
+                        "subtle-light": "#6b7280",
+                        "subtle-dark": "#9ca3af",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a3832",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05)',
+                        'soft-lg': '0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05)',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-content-light dark:text-content-dark">
+<div class="flex min-h-screen">
+    <aside class="w-64 bg-surface-light dark:bg-surface-dark flex-col p-6 shadow-soft-lg hidden lg:flex">
+        <div class="flex items-center gap-3 mb-10">
+            <img alt="PashuMitra Logo" class="h-10 w-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJjvQ9NfKM4_D8Iqb0OKXlr9cj2warQNQjednDSeDRmCiPu28Rm4Y1EoeKh_TBkYDpbtTIabkTdhNvSIDWRbYYHDJ_fY0bCeU1qpnCGdIz8DFBjXONK4xTdLjBgVZgWdBaDiApHw91PIyRkuckEbpOzMFJz-1EDypKipIR4TJZ2bGrZivsGrKgH-t5KsbgWtYaP96XQfn8zspx02pqCqxE7ROMd0Nx9HW1PDcjJnrgfEtUBXKKetCImkif-LDO155vYf3v2zqg4qJj"/>
+            <span class="text-xl font-bold">PashuMitra</span>
+        </div>
+        <div class="flex items-center gap-3 mb-8">
+            <img alt="Priya Sharma" class="size-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqJQoKYZBMZQNjU2Z4erQatBwwniMQIFCXpWKLM9kPUCN97nV_kHh1MdWCIdHH4coUnf6UWxK6iEtAWVhXKH_xT7yv8uPPOQpVGDYTvAzOo8IE_KEtEjzZrYe-duHwC7SJcnLdsKAl-bW0jC6qenWaFhG6OV28HgxN_iGw-SO9OJoA2G2daJSb-srVzRU7BBUSSQC_rEzJQSdHLPdCO9aW8Gqtg67ucSUZZocFuxEcft8QbnAxXGxAwpCJrzDxLwERqrVuxGtG2Cbu"/>
+            <div>
+                <h3 class="font-semibold">Priya Sharma</h3>
+                <p class="text-sm text-subtle-light dark:text-subtle-dark">Farmer ID: 12345</p>
+            </div>
+        </div>
+        <nav class="flex flex-col gap-2">
+            <a class="flex items-center gap-3 px-4 py-2 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary font-medium" href="index2.html">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-content-light dark:text-content-dark hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors" href="livestock.html">
+                <span class="material-symbols-outlined">pets</span>
+                <span>Livestock</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-content-light dark:text-content-dark hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors" href="health.html">
+                <span class="material-symbols-outlined">health_and_safety</span>
+                <span>Health</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-content-light dark:text-content-dark hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors" href="index4.html">
+                <span class="material-symbols-outlined">school</span>
+                <span>Training</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-2 rounded-lg text-content-light dark:text-content-dark hover:bg-primary/10 dark:hover:bg-primary/20 hover:text-primary transition-colors" href="support.html">
+                <span class="material-symbols-outlined">help_outline</span>
+                <span>Support</span>
+            </a>
+        </nav>
+    </aside>
+    <main class="flex-1 p-6 lg:p-10">
+        <header class="mb-8 flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold">Dashboard</h1>
+                <p class="text-subtle-light dark:text-subtle-dark mt-1">Welcome back, Priya! Here's your farm's overview.</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <button id="dark-toggle" class="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
+                    <span class="material-symbols-outlined">dark_mode</span>
+                </button>
+                <a href="index1.html" class="flex items-center gap-2 rounded-full p-2 hover:bg-primary/10 transition-colors">
+                    <span class="material-symbols-outlined text-primary dark:text-gray-200">logout</span>
+                </a>
+                <img alt="User Avatar" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqJQoKYZBMZQNjU2Z4erQatBwwniMQIFCXpWKLM9kPUCN97nV_kHh1MdWCIdHH4coUnf6UWxK6iEtAWVhXKH_xT7yv8uPPOQpVGDYTvAzOo8IE_KEtEjzZrYe-duHwC7SJcnLdsKAl-bW0jC6qenWaFhG6OV28HgxN_iGw-SO9OJoA2G2daJSb-srVzRU7BBUSSQC_rEzJQSdHLPdCO9aW8Gqtg67ucSUZZocFuxEcft8QbnAxXGxAwpCJrzDxLwERqrVuxGtG2Cbu"/>
+            </div>
+        </header>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl shadow-soft flex flex-col gap-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-primary/10 dark:bg-primary/20 p-3 rounded-lg">
+                            <span class="material-symbols-outlined text-primary text-3xl">notifications_active</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold">Alerts</h3>
+                            <p class="text-sm text-subtle-light dark:text-subtle-dark">Potential health risks in your area</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 text-sm font-medium text-orange-500">
+                        <span class="relative flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
+                        </span>
+                        <span>2 Urgent</span>
+                    </div>
+                </div>
+                <a href="index6.html" class="w-full flex items-center justify-center gap-2 bg-primary text-white font-medium py-2 px-4 rounded-lg hover:bg-primary/90 transition-colors">
+                    <span>View Alerts</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+            </div>
+            <div class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl shadow-soft flex flex-col gap-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-primary/10 dark:bg-primary/20 p-3 rounded-lg">
+                            <span class="material-symbols-outlined text-primary text-3xl">verified</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold">Compliance Status</h3>
+                            <p class="text-sm text-subtle-light dark:text-subtle-dark">Farm regulatory requirements</p>
+                        </div>
+                    </div>
+                    <span class="text-sm font-medium px-2 py-1 rounded-full bg-green-500/20 text-green-600 dark:text-green-400">Compliant</span>
+                </div>
+                <a href="status.html" class="w-full flex items-center justify-center gap-2 bg-primary text-white font-medium py-2 px-4 rounded-lg hover:bg-primary/90 transition-colors">
+                    <span>Check Status</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+            </div>
+            <div class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl shadow-soft flex flex-col gap-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-primary/10 dark:bg-primary/20 p-3 rounded-lg">
+                            <span class="material-symbols-outlined text-primary text-3xl">model_training</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold">Training Modules</h3>
+                            <p class="text-sm text-subtle-light dark:text-subtle-dark">Improve livestock management skills</p>
+                        </div>
+                    </div>
+                    <span class="text-sm font-medium text-blue-500">3 New</span>
+                </div>
+                <a href="index4.html" class="w-full flex items-center justify-center gap-2 bg-primary text-white font-medium py-2 px-4 rounded-lg hover:bg-primary/90 transition-colors">
+                    <span>Start Training</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+            </div>
+            <div class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl shadow-soft md:col-span-2 xl:col-span-3">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-primary/10 dark:bg-primary/20 p-2 rounded-lg">
+                        <span class="material-symbols-outlined text-primary text-2xl">lightbulb</span>
+                    </div>
+                    <h3 class="text-lg font-semibold">Daily Tip</h3>
+                </div>
+                <p class="text-content-light dark:text-content-dark" id="daily-tip-text">Loading...</p>
+            </div>
+        </div>
+        <div class="mt-8 bg-surface-light dark:bg-surface-dark p-6 rounded-xl shadow-soft">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold">Health Trends</h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                <div class="bg-gray-100 dark:bg-surface-dark p-4 rounded-lg shadow-soft text-center">
+                    <p class="text-subtle-light dark:text-subtle-dark text-sm">Total Animals</p>
+                    <p class="text-2xl font-bold text-primary" id="total-animals">0</p>
+                </div>
+                <div class="bg-gray-100 dark:bg-surface-dark p-4 rounded-lg shadow-soft text-center">
+                    <p class="text-subtle-light dark:text-subtle-dark text-sm">Healthy Animals</p>
+                    <p class="text-2xl font-bold text-green-500" id="healthy-animals">0</p>
+                </div>
+                <div class="bg-gray-100 dark:bg-surface-dark p-4 rounded-lg shadow-soft text-center">
+                    <p class="text-subtle-light dark:text-subtle-dark text-sm">Needs Checkup</p>
+                    <p class="text-2xl font-bold text-red-500" id="unwell-animals">0</p>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+                <div class="w-full md:w-2/3 h-64">
+                    <canvas id="healthChart"></canvas>
+                </div>
+                <div class="w-full md:w-1/3 h-64">
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
+            <div class="mt-4 p-4 rounded-lg bg-gray-100 dark:bg-surface-dark" id="health-analysis">
+                <p class="text-sm font-semibold text-primary">Analysis:</p>
+                <p class="text-sm mt-1" id="analysis-text">Data loading...</p>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div id="onboarding-modal" class="fixed inset-0 z-50 hidden items-center justify-center modal-overlay">
+    <div class="bg-surface-light dark:bg-surface-dark p-8 rounded-xl shadow-soft w-full max-w-xl mx-4 text-center">
+        <h3 class="text-2xl font-bold mb-4">Welcome to PashuMitra!</h3>
+        <p class="text-subtle-light dark:text-subtle-dark mb-6">Let's get you familiar with the main features.</p>
+        <div class="flex flex-col items-center">
+            <div class="mb-4 text-primary">
+                <span class="material-symbols-outlined text-5xl">dashboard</span>
+            </div>
+            <p class="font-semibold text-lg">Dashboard</p>
+            <p class="text-subtle-light dark:text-subtle-dark mb-4">Your central hub for farm overview, health trends, and alerts.</p>
+            <div class="flex gap-4">
+                <button id="skip-onboarding-btn" class="py-2 px-4 rounded-lg text-content-light dark:text-content-dark hover:bg-gray-200 dark:hover:bg-surface-dark transition-colors">Skip</button>
+                <button id="next-onboarding-btn" class="py-2 px-4 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors">Continue</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const darkToggle = document.getElementById('dark-toggle');
+    const healthChart = document.getElementById('healthChart');
+    const pieChart = document.getElementById('pieChart');
+    let myChart, myPieChart;
+
+    const dailyTips = [
+        "Regularly check your animal's body temperature and appetite. Early detection of changes can prevent serious diseases.",
+        "Ensure your livestock have access to clean, fresh water at all times. Proper hydration is key to good health.",
+        "Maintain a clean and dry living environment for your animals to prevent the spread of infections and parasites.",
+        "Rotate grazing pastures to prevent overgrazing and reduce the buildup of parasites in the soil.",
+        "Keep a record of all vaccinations and deworming schedules. This helps in proactive health management."
+    ];
+
+    document.getElementById('daily-tip-text').textContent = dailyTips[Math.floor(Math.random() * dailyTips.length)];
+
+    const getLivestockData = () => {
+        const storedData = localStorage.getItem('livestockData');
+        return storedData ? JSON.parse(storedData) : [
+            { id: 1, name: 'Bholi', type: 'Cow', health: 'Healthy' },
+            { id: 2, name: 'Shera', type: 'Buffalo', health: 'Needs Checkup' },
+            { id: 3, name: 'Dugga', type: 'Goat', health: 'Healthy' },
+            { id: 4, name: 'Rani', type: 'Cow', health: 'Healthy' },
+            { id: 5, name: 'Bhadur', type: 'Bull', health: 'Unwell' },
+        ];
+    };
+
+    const getHealthRecordsData = () => {
+        const storedData = localStorage.getItem('healthRecordsData');
+        return storedData ? JSON.parse(storedData) : [
+            { id: 1, animalId: 1, type: 'Vaccination', details: 'FMD vaccination completed.', date: '2025-08-15', recordedBy: 'Priya' },
+            { id: 2, animalId: 2, type: 'Checkup', details: 'Routine checkup. Prescribed antibiotics.', date: '2025-09-20', recordedBy: 'Priya' },
+        ];
+    };
+
+    const calculateHealthIndex = (livestock) => {
+        const today = new Date();
+        const labels = [];
+        const data = [];
+
+        for (let i = 5; i >= 0; i--) {
+            const date = new Date(today.getFullYear(), today.getMonth() - i, 1);
+            const monthLabel = date.toLocaleString('default', { month: 'short' });
+            labels.push(monthLabel);
+
+            let healthIndex;
+            if (i === 0) {
+                const healthyAnimals = livestock.filter(a => a.health === 'Healthy').length;
+                healthIndex = (healthyAnimals / livestock.length) * 100;
+            } else {
+                const dummyData = [75, 80, 85, 90, 88, 92];
+                healthIndex = dummyData[5 - i];
+            }
+            data.push(healthIndex);
+        }
+
+        return { labels, data };
+    };
+
+    const analyzeHealthTrends = (data) => {
+        if (data.length < 2) {
+            document.getElementById('analysis-text').textContent = "Not enough data to analyze trends.";
+            return;
+        }
+
+        const lastValue = data[data.length - 1];
+        const prevValue = data[data.length - 2];
+        const change = lastValue - prevValue;
+        const percentageChange = ((change / prevValue) * 100).toFixed(1);
+
+        let analysisText = "";
+        let analysisColor = "";
+
+        if (change > 0) {
+            analysisText = `The overall health index has increased by ${percentageChange}% since last month. Keep up the good work!`;
+            analysisColor = "text-green-600 dark:text-green-400";
+        } else if (change < 0) {
+            analysisText = `The overall health index has decreased by ${Math.abs(percentageChange)}% since last month. It's recommended to check for unwell animals.`;
+            analysisColor = "text-red-600 dark:text-red-400";
+        } else {
+            analysisText = "The health index has remained stable this month. Continue monitoring your animals closely.";
+            analysisColor = "text-yellow-600 dark:text-yellow-400";
+        }
+
+        document.getElementById('analysis-text').textContent = analysisText;
+        document.getElementById('analysis-text').classList.add(analysisColor);
+    };
+
+    const updateDashboardStats = (livestock) => {
+        const total = livestock.length;
+        const healthy = livestock.filter(a => a.health === 'Healthy').length;
+        const needsCheckup = livestock.filter(a => a.health === 'Needs Checkup').length;
+        const unwell = livestock.filter(a => a.health === 'Unwell').length;
+        
+        document.getElementById('total-animals').textContent = total;
+        document.getElementById('healthy-animals').textContent = healthy;
+        document.getElementById('unwell-animals').textContent = needsCheckup + unwell;
+
+        return { healthy, unwell: needsCheckup + unwell };
+    };
+
+    const chartConfig = {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Health Index',
+                data: [],
+                backgroundColor: 'rgba(0, 107, 86, 0.2)',
+                borderColor: '#006b56',
+                borderWidth: 2,
+                pointBackgroundColor: '#006b56',
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                    ticks: { color: 'black' }
+                },
+                x: {
+                    grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                    ticks: { color: 'black' }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: { color: 'black' }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: (tooltipItems) => {
+                            return `${tooltipItems[0].label} Health Data`;
+                        },
+                        label: (context) => {
+                            return `Health Index: ${context.raw.toFixed(1)}%`;
+                        }
+                    }
+                }
+            }
+        }
+    };
+    
+    const pieConfig = {
+        type: 'doughnut',
+        data: {
+            labels: ['Healthy', 'Needs Checkup / Unwell'],
+            datasets: [{
+                data: [],
+                backgroundColor: ['#10B981', '#EF4444'],
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { color: 'black' }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed !== null) {
+                                label += `${context.parsed}%`;
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+    const updateChartColors = (isDarkMode) => {
+        const textColor = isDarkMode ? 'white' : 'black';
+        const gridColor = isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)';
+        
+        if (myChart) {
+            myChart.options.scales.x.grid.color = gridColor;
+            myChart.options.scales.y.grid.color = gridColor;
+            myChart.options.scales.x.ticks.color = textColor;
+            myChart.options.scales.y.ticks.color = textColor;
+            myChart.options.plugins.legend.labels.color = textColor;
+            myChart.update();
+        }
+
+        if (myPieChart) {
+            myPieChart.options.plugins.legend.labels.color = textColor;
+            myPieChart.update();
+        }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const livestock = getLivestockData();
+        
+        const { healthy, unwell } = updateDashboardStats(livestock);
+        const { labels, data } = calculateHealthIndex(livestock);
+        
+        chartConfig.data.labels = labels;
+        chartConfig.data.datasets[0].data = data;
+        
+        const total = healthy + unwell;
+        const healthyPercentage = (total === 0) ? 0 : (healthy / total) * 100;
+        const unwellPercentage = (total === 0) ? 0 : (unwell / total) * 100;
+        pieConfig.data.datasets[0].data = [healthyPercentage, unwellPercentage];
+
+        myChart = new Chart(healthChart, chartConfig);
+        myPieChart = new Chart(pieChart, pieConfig);
+        
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDark) {
+            document.body.classList.add('dark');
+            updateChartColors(true);
+        }
+        
+        if (!localStorage.getItem('onboardingShown')) {
+            document.getElementById('onboarding-modal').classList.remove('hidden');
+            document.getElementById('onboarding-modal').classList.add('flex');
+        }
+
+        document.getElementById('skip-onboarding-btn').addEventListener('click', () => {
+            document.getElementById('onboarding-modal').classList.add('hidden');
+            localStorage.setItem('onboardingShown', 'true');
+        });
+
+        document.getElementById('next-onboarding-btn').addEventListener('click', () => {
+            document.getElementById('onboarding-modal').classList.add('hidden');
+            localStorage.setItem('onboardingShown', 'true');
+        });
+
+        analyzeHealthTrends(data);
+    });
+
+    darkToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        const isDarkMode = document.body.classList.contains('dark');
+        updateChartColors(isDarkMode);
+    });
+</script>
+</body>
+</html>
